@@ -156,12 +156,12 @@ const playlist = [
   {
     title: "Sholawat Nabi — Ya Nabi Salam",
     // Placeholder MP3s — replace with your actual Islamic nasheeds
-    src: "assets/music-islami.mp3",
+    src: "music-islami.mp3",
     fallback: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
   },
   {
     title: "Sholawat — Tholaal Badru",
-    src: "assets/music-islami-2.mp3",
+    src: "music-islami-2.mp3",
     fallback: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
   },
 ];
@@ -482,3 +482,4 @@ document.addEventListener(
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
+
