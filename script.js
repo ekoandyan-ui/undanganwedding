@@ -13,6 +13,30 @@ window.addEventListener("load", function () {
   }, 1500);
 });
 
+// ============ CLEAR INVITATION STATE ON PAGE LOAD ============
+// This ensures cover is always shown first when page is loaded/refreshed
+window.addEventListener("pageshow", function (event) {
+  // Clear any saved state that would bypass the cover
+  localStorage.removeItem("invitationOpened");
+
+  // Reset to cover view
+  const cover = document.getElementById("cover");
+  const main = document.getElementById("mainContent");
+
+  if (cover && main) {
+    cover.style.display = "flex";
+    cover.style.opacity = "1";
+    cover.style.transform = "scale(1)";
+    main.style.display = "none";
+  }
+
+  // Reset music player state
+  if (audioEl) {
+    audioEl.pause();
+    setPlayingState(false);
+  }
+});
+
 // ============ INIT AOS ============
 AOS.init({
   duration: 900,
@@ -100,6 +124,36 @@ const gallerySwiper = new Swiper(".gallery-swiper", {
   }
 })();
 
+// ============ GET GUEST NAME FROM URL PATH ============
+function getGuestNameFromPath() {
+  // Get the current path
+  let path = window.location.pathname;
+
+  // Remove leading and trailing slashes
+  path = path.replace(/^\/|\/$/g, "");
+
+  // If path is not empty and not the root, use it as guest name
+  if (path && path !== "" && path !== "index.html") {
+    // Decode URI component and replace hyphens/underscores with spaces
+    let guestName = decodeURIComponent(path);
+    guestName = guestName.replace(/[-_]/g, " ");
+
+    // Capitalize each word
+    guestName = guestName.replace(/\b\w/g, (l) => l.toUpperCase());
+
+    return guestName;
+  }
+
+  // Fallback to query parameter if exists (for backward compatibility)
+  const urlParams = new URLSearchParams(window.location.search);
+  const guest = urlParams.get("to");
+  if (guest) {
+    return decodeURIComponent(guest);
+  }
+
+  return null;
+}
+
 // ============ OPEN INVITATION ============
 function openInvitation() {
   const cover = document.getElementById("cover");
@@ -120,7 +174,6 @@ function openInvitation() {
       AOS.refresh();
     }, 50);
     window.scrollTo({ top: 0, behavior: "smooth" });
-    localStorage.setItem("invitationOpened", "true");
     // Auto-start music
     tryPlayMusic();
   }, 700);
@@ -128,18 +181,25 @@ function openInvitation() {
 
 // ============ ON LOAD ============
 window.onload = function () {
-  if (localStorage.getItem("invitationOpened") === "true") {
-    document.getElementById("cover").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-    AOS.refresh();
+  // Always show cover first - no localStorage check
+  const cover = document.getElementById("cover");
+  const main = document.getElementById("mainContent");
+
+  if (cover && main) {
+    cover.style.display = "flex";
+    cover.style.opacity = "1";
+    cover.style.transform = "scale(1)";
+    main.style.display = "none";
   }
 
-  // Set guest name from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const guest = urlParams.get("to");
-  if (guest) {
-    document.getElementById("guestName").textContent =
-      decodeURIComponent(guest);
+  // Set guest name from URL path
+  const guestName = getGuestNameFromPath();
+  const guestNameElement = document.getElementById("guestName");
+
+  if (guestName && guestNameElement) {
+    guestNameElement.textContent = guestName;
+  } else if (guestNameElement) {
+    guestNameElement.textContent = "Bapak/Ibu/Sahabat";
   }
 
   // Dark theme
@@ -701,4 +761,27 @@ window.addEventListener("load", () => {
 window.addEventListener("error", function (e) {
   console.log("Error:", e.message);
   // Silent fail for better UX
+});
+
+// ============ ADDITIONAL CLEANUP FOR PAGE REFRESH ============
+// Handle back/forward cache
+window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
+    // Page was restored from bfcache (back/forward cache)
+    const cover = document.getElementById("cover");
+    const main = document.getElementById("mainContent");
+
+    if (cover && main) {
+      cover.style.display = "flex";
+      cover.style.opacity = "1";
+      cover.style.transform = "scale(1)";
+      main.style.display = "none";
+    }
+
+    // Reset music
+    if (audioEl) {
+      audioEl.pause();
+      setPlayingState(false);
+    }
+  }
 });
