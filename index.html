@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Undangan Pernikahan | [Nama Pria] & [Nama Wanita]</title>
+    <title>Walimatul 'Urs | Thaha & Maryam</title>
 
     <!-- Font Awesome Icons -->
     <link
@@ -20,15 +20,37 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="preloader-content">
+        <div class="preloader-ring"></div>
+        <div class="preloader-ring-inner"></div>
+        <div class="preloader-text">بِسْمِ اللَّهِ</div>
+      </div>
+    </div>
+
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
 
     <!-- Floating Petals -->
     <div class="petals-container" id="petals"></div>
+
+    <!-- Floating Orbs -->
+    <div class="floating-orbs">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
 
     <!-- Navigation Buttons -->
     <div class="nav-buttons">
@@ -38,6 +60,9 @@
       <button id="toggleTheme" class="nav-btn" title="Tema">
         <i class="fas fa-moon"></i>
       </button>
+      <button id="scrollTop" class="nav-btn" title="Ke Atas">
+        <i class="fas fa-arrow-up"></i>
+      </button>
     </div>
 
     <!-- Music Player Bar -->
@@ -45,7 +70,10 @@
       <div class="music-bar-inner">
         <div class="music-info">
           <i class="fas fa-music music-note-spin"></i>
-          <span id="songTitle">Sholawat Nabi — Sedang Diputar</span>
+          <div class="music-text">
+            <span id="songTitle">Sholawat Nabi — Sedang Diputar</span>
+            <span class="music-artist">Qasidah Modern</span>
+          </div>
         </div>
         <div class="music-controls">
           <button id="prevSong" class="music-ctrl-btn">
@@ -62,6 +90,21 @@
           <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
           </div>
+          <div class="music-time">
+            <span id="currentTime">0:00</span>
+            <span id="duration">3:45</span>
+          </div>
+        </div>
+        <div class="music-volume">
+          <i class="fas fa-volume-up" id="volumeIcon"></i>
+          <input
+            type="range"
+            id="volumeControl"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.6"
+          />
         </div>
       </div>
     </div>
@@ -73,7 +116,7 @@
       <div class="cover-ornament bottom-left"></div>
       <div class="cover-ornament bottom-right"></div>
 
-      <div class="cover-card">
+      <div class="cover-card" data-aos="zoom-in" data-aos-duration="1200">
         <div class="cover-inner">
           <div class="bismillah-cover">
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
@@ -81,7 +124,10 @@
           <div class="cover-tag">Undangan Pernikahan</div>
 
           <div class="cover-names">
-            <div class="name-arabic">طٰهٰ</div>
+            <div class="name-container name-left">
+              <div class="name-arabic">طٰهٰ</div>
+              <div class="name-latin">Thaha</div>
+            </div>
             <div class="ampersand-wrap">
               <svg class="ampersand-svg" viewBox="0 0 60 80" fill="none">
                 <path
@@ -98,14 +144,17 @@
                 />
               </svg>
             </div>
-            <div class="name-arabic">مَرْيَم</div>
+            <div class="name-container name-right">
+              <div class="name-arabic">مَرْيَم</div>
+              <div class="name-latin">Maryam</div>
+            </div>
           </div>
 
-          <div class="cover-latin-names">[Nama Pria] & [Nama Wanita]</div>
+          <div class="cover-latin-names">Thaha & Maryam</div>
 
           <div class="gold-divider">
             <span class="divider-line"></span>
-            <span class="divider-diamond">◆</span>
+            <span class="divider-diamond">✦</span>
             <span class="divider-line"></span>
           </div>
 
@@ -133,12 +182,19 @@
 
     <!-- ============ MAIN CONTENT ============ -->
     <main id="mainContent" style="display: none">
+      <!-- Progress Bar -->
+      <div class="reading-progress">
+        <div class="progress-bar-scroll" id="scrollProgress"></div>
+      </div>
+
       <!-- Quran Section -->
-      <section class="quran-section">
+      <section class="quran-section" id="quran">
         <div class="quran-bg-text">آية</div>
-        <div class="container" data-aos="fade-up">
-          <div class="quran-card">
-            <div class="quran-ornament"></div>
+        <div class="container">
+          <div class="quran-card" data-aos="fade-up" data-aos-duration="1000">
+            <div class="quran-ornament">
+              <i class="fas fa-star-and-crescent"></i>
+            </div>
             <div class="arabic-verse">
               وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
               لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
@@ -155,7 +211,7 @@
       </section>
 
       <!-- Couple Section -->
-      <section class="couple-section">
+      <section class="couple-section" id="couple">
         <div class="container">
           <div class="section-header" data-aos="fade-down">
             <div class="section-pre">Dengan Penuh Kebahagiaan</div>
@@ -165,45 +221,58 @@
 
           <div class="couple-layout">
             <!-- Groom -->
-            <div class="couple-card" data-aos="fade-right" data-aos-delay="100">
+            <div
+              class="couple-card"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
               <div class="couple-photo-frame">
                 <div class="frame-corner tl"></div>
                 <div class="frame-corner tr"></div>
                 <div class="frame-corner bl"></div>
                 <div class="frame-corner br"></div>
                 <div class="photo-circle">
+                  <div class="photo-overlay"></div>
                   <img
-                    src="assets/foto-pria.jpg"
-                    alt="Nama Pria"
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop"
+                    alt="Thaha"
                     class="couple-img"
-                    onerror="
-                      this.src =
-                        'https://ui-avatars.com/api/?name=Nama+Pria&size=300&background=9caf88&color=fff&font-size=0.33'
-                    "
                   />
                 </div>
               </div>
               <div class="couple-info">
                 <div class="couple-label">Mempelai Pria</div>
-                <h3 class="couple-name">[Nama Lengkap Pria]</h3>
+                <h3 class="couple-name">Thaha Abdurrahman</h3>
                 <div class="couple-sub">Putra dari</div>
-                <p class="couple-parents">Bapak [Nama Ayah] & Ibu [Nama Ibu]</p>
+                <p class="couple-parents">
+                  Bapak Ahmad Rasyid & Ibu Fatimah Azzahra
+                </p>
                 <div class="social-links">
-                  <a href="#" class="social-btn"
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-                  <a href="#" class="social-btn"
-                    ><i class="fab fa-facebook"></i
-                  ></a>
+                  <a href="#" class="social-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" class="social-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#" class="social-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
                 </div>
               </div>
             </div>
 
             <!-- Center Symbol -->
-            <div class="couple-center" data-aos="zoom-in" data-aos-delay="200">
+            <div
+              class="couple-center"
+              data-aos="zoom-in"
+              data-aos-duration="1200"
+              data-aos-delay="300"
+            >
               <div class="heart-ornament">
                 <div class="heart-ring ring1"></div>
                 <div class="heart-ring ring2"></div>
+                <div class="heart-ring ring3"></div>
                 <div class="heart-core">
                   <i class="fas fa-heart"></i>
                 </div>
@@ -212,37 +281,120 @@
             </div>
 
             <!-- Bride -->
-            <div class="couple-card" data-aos="fade-left" data-aos-delay="100">
+            <div
+              class="couple-card"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
               <div class="couple-photo-frame">
                 <div class="frame-corner tl"></div>
                 <div class="frame-corner tr"></div>
                 <div class="frame-corner bl"></div>
                 <div class="frame-corner br"></div>
                 <div class="photo-circle">
+                  <div class="photo-overlay"></div>
                   <img
-                    src="assets/foto-wanita.jpeg"
-                    alt="Nama Wanita"
+                    src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?w=400&auto=format&fit=crop"
+                    alt="Maryam"
                     class="couple-img"
-                    onerror="
-                      this.src =
-                        'https://ui-avatars.com/api/?name=Nama+Wanita&size=300&background=c2a758&color=fff&font-size=0.33'
-                    "
                   />
                 </div>
               </div>
               <div class="couple-info">
                 <div class="couple-label">Mempelai Wanita</div>
-                <h3 class="couple-name">[Nama Lengkap Wanita]</h3>
+                <h3 class="couple-name">Maryam Khadijah</h3>
                 <div class="couple-sub">Putri dari</div>
-                <p class="couple-parents">Bapak [Nama Ayah] & Ibu [Nama Ibu]</p>
+                <p class="couple-parents">
+                  Bapak Abdullah Hasan & Ibu Aisyah Nur
+                </p>
                 <div class="social-links">
-                  <a href="#" class="social-btn"
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-                  <a href="#" class="social-btn"
-                    ><i class="fab fa-facebook"></i
-                  ></a>
+                  <a href="#" class="social-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" class="social-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#" class="social-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Story Section (New) -->
+      <section class="story-section" id="story">
+        <div class="container">
+          <div class="section-header" data-aos="fade-down">
+            <div class="section-pre">Perjalanan Cinta</div>
+            <h2 class="section-title">Our Story</h2>
+            <div class="section-ornament">✦ ✦ ✦</div>
+          </div>
+
+          <div class="timeline">
+            <div
+              class="timeline-item"
+              data-aos="fade-right"
+              data-aos-duration="800"
+            >
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">2019</div>
+                <h3>Pertemuan Pertama</h3>
+                <p>
+                  Bertemu di acara kajian muslim, berbagi ilmu dan pemikiran
+                  yang sejalan.
+                </p>
+              </div>
+            </div>
+            <div
+              class="timeline-item"
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">2021</div>
+                <h3>Ta'aruf</h3>
+                <p>
+                  Proses ta'aruf yang indah, saling mengenal dengan bimbingan
+                  keluarga.
+                </p>
+              </div>
+            </div>
+            <div
+              class="timeline-item"
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-delay="400"
+            >
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">2023</div>
+                <h3>Khitbah</h3>
+                <p>
+                  Prosesi lamaran yang penuh berkah dengan restu kedua keluarga.
+                </p>
+              </div>
+            </div>
+            <div
+              class="timeline-item"
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-delay="600"
+            >
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">2025</div>
+                <h3>Pernikahan</h3>
+                <p>
+                  Menggenapkan setengah agama, menuju rumah tangga sakinah
+                  mawaddah warahmah.
+                </p>
               </div>
             </div>
           </div>
@@ -250,7 +402,7 @@
       </section>
 
       <!-- Countdown Section -->
-      <section class="countdown-section">
+      <section class="countdown-section" id="countdown-sec">
         <div class="countdown-bg"></div>
         <div class="container">
           <div class="section-header light" data-aos="fade-down">
@@ -258,42 +410,51 @@
             <h2 class="section-title">Menuju Hari Bahagia</h2>
             <div class="section-ornament">✦ ✦ ✦</div>
           </div>
+
           <div
-            class="countdown-grid"
-            id="countdown"
+            class="countdown-wrapper"
             data-aos="fade-up"
+            data-aos-duration="1000"
             data-aos-delay="200"
           >
-            <div class="countdown-item">
-              <div class="countdown-box">
-                <span class="countdown-number" id="days">00</span>
+            <div class="countdown-grid" id="countdown">
+              <div class="countdown-item">
+                <div class="countdown-box">
+                  <span class="countdown-number" id="days">00</span>
+                </div>
+                <span class="countdown-label">Hari</span>
               </div>
-              <span class="countdown-label">Hari</span>
+              <div class="countdown-item">
+                <div class="countdown-box">
+                  <span class="countdown-number" id="hours">00</span>
+                </div>
+                <span class="countdown-label">Jam</span>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-box">
+                  <span class="countdown-number" id="minutes">00</span>
+                </div>
+                <span class="countdown-label">Menit</span>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-box">
+                  <span class="countdown-number" id="seconds">00</span>
+                </div>
+                <span class="countdown-label">Detik</span>
+              </div>
             </div>
-            <div class="countdown-item">
-              <div class="countdown-box">
-                <span class="countdown-number" id="hours">00</span>
-              </div>
-              <span class="countdown-label">Jam</span>
-            </div>
-            <div class="countdown-item">
-              <div class="countdown-box">
-                <span class="countdown-number" id="minutes">00</span>
-              </div>
-              <span class="countdown-label">Menit</span>
-            </div>
-            <div class="countdown-item">
-              <div class="countdown-box">
-                <span class="countdown-number" id="seconds">00</span>
-              </div>
-              <span class="countdown-label">Detik</span>
+
+            <div class="countdown-message">
+              <i class="fas fa-spa"></i>
+              <span>Doa terbaik untuk hari istimewa</span>
+              <i class="fas fa-spa"></i>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Event Section -->
-      <section class="event-section">
+      <section class="event-section" id="event">
         <div class="container">
           <div class="section-header" data-aos="fade-down">
             <div class="section-pre">Rangkaian Acara</div>
@@ -302,7 +463,12 @@
           </div>
 
           <div class="event-grid">
-            <div class="event-card" data-aos="flip-left" data-aos-delay="100">
+            <div
+              class="event-card"
+              data-aos="flip-left"
+              data-aos-duration="1000"
+              data-aos-delay="100"
+            >
               <div class="event-card-bg"></div>
               <div class="event-icon-wrap">
                 <div class="event-icon-ring"></div>
@@ -318,13 +484,22 @@
                 <i class="fas fa-clock"></i>
                 <span>09.00 WIB — Selesai</span>
               </div>
+              <div class="event-detail">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Masjid Raya Baiturrahman</span>
+              </div>
             </div>
 
-            <div class="event-card" data-aos="flip-right" data-aos-delay="200">
+            <div
+              class="event-card"
+              data-aos="flip-right"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
               <div class="event-card-bg"></div>
               <div class="event-icon-wrap">
                 <div class="event-icon-ring"></div>
-                <i class="fas fa-champagne-glasses event-icon"></i>
+                <i class="fas fa-utensils event-icon"></i>
               </div>
               <div class="event-tag">Resepsi</div>
               <div class="event-divider"></div>
@@ -336,31 +511,43 @@
                 <i class="fas fa-clock"></i>
                 <span>10.30 — 14.00 WIB</span>
               </div>
+              <div class="event-detail">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Gedung Serbaguna Al-Hijrah</span>
+              </div>
             </div>
           </div>
 
           <!-- Location -->
-          <div class="location-wrap" data-aos="fade-up" data-aos-delay="300">
+          <div
+            class="location-wrap"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+          >
             <div class="location-card">
               <div class="location-pin">
                 <i class="fas fa-map-pin"></i>
               </div>
               <div class="location-info">
-                <h3>[Nama Masjid/Gedung]</h3>
-                <p>[Alamat Lengkap Jalan, Kelurahan, Kecamatan, Kota]</p>
+                <h3>Masjid Raya Baiturrahman</h3>
+                <p>
+                  Jl. Masjid Raya No.1, Kel. Sukajadi, Kec. Sumur Bandung, Kota
+                  Bandung 40121
+                </p>
               </div>
               <a
-                href="https://maps.google.com/?q=[Nama+Tempat]"
+                href="https://maps.google.com/?q=Masjid+Raya+Baiturrahman+Bandung"
                 target="_blank"
                 class="btn-maps"
               >
-                <i class="fas fa-directions"></i> Google Maps
+                <i class="fas fa-directions"></i> Buka Maps
               </a>
             </div>
             <div class="qr-card">
               <div class="qr-label">Scan Lokasi</div>
               <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://maps.google.com/?q=[Nama+Tempat]&color=5d4a3a&bgcolor=faf7f2"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=Masjid+Raya+Baiturrahman+Bandung&color=5d4a3a&bgcolor=faf7f2"
                 alt="QR Maps"
               />
             </div>
@@ -368,30 +555,102 @@
         </div>
       </section>
 
+      <!-- Gallery Section (New) -->
+      <section class="gallery-section" id="gallery">
+        <div class="container">
+          <div class="section-header" data-aos="fade-down">
+            <div class="section-pre">Momen Berharga</div>
+            <h2 class="section-title">Pre-Wedding</h2>
+            <div class="section-ornament">✦ ✦ ✦</div>
+          </div>
+
+          <div
+            class="swiper gallery-swiper"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&auto=format&fit=crop"
+                    alt="Gallery 1"
+                  />
+                  <div class="gallery-overlay">
+                    <span>Bersama dalam doa</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=400&auto=format&fit=crop"
+                    alt="Gallery 2"
+                  />
+                  <div class="gallery-overlay">
+                    <span>Cinta karena-Nya</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&auto=format&fit=crop"
+                    alt="Gallery 3"
+                  />
+                  <div class="gallery-overlay">
+                    <span>Ikatan suci</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="gallery-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&auto=format&fit=crop"
+                    alt="Gallery 4"
+                  />
+                  <div class="gallery-overlay">
+                    <span>Bahagia bersama</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
       <!-- Live Streaming -->
-      <section class="streaming-section">
+      <section class="streaming-section" id="streaming">
         <div class="container">
           <div class="section-header" data-aos="fade-down">
             <div class="section-pre">Tidak Bisa Hadir?</div>
             <h2 class="section-title">Live Streaming</h2>
             <div class="section-ornament">✦ ✦ ✦</div>
           </div>
-          <div class="streaming-card" data-aos="zoom-in">
+          <div
+            class="streaming-card"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+          >
             <div class="streaming-visual">
               <div class="live-badge"><span class="live-dot"></span> LIVE</div>
               <i class="fab fa-youtube stream-icon"></i>
             </div>
-            <p>Saksikan momen istimewa kami via live streaming YouTube</p>
+            <p>
+              Saksikan momen istimewa kami secara langsung melalui live
+              streaming YouTube
+            </p>
             <a
-              href="https://youtube.com/watch?v=[VIDEO_ID]"
+              href="https://youtube.com/watch?v=example123"
               target="_blank"
               class="btn-youtube"
             >
-              <i class="fab fa-youtube"></i> Tonton Live
+              <i class="fab fa-youtube"></i> Tonton Live Streaming
             </a>
             <div class="stream-qr">
               <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://youtube.com/watch?v=[VIDEO_ID]"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://youtube.com/watch?v=example123"
                 alt="QR Live"
               />
               <span>Scan untuk menonton</span>
@@ -401,7 +660,7 @@
       </section>
 
       <!-- Gift / Digital Envelope -->
-      <section class="gift-section">
+      <section class="gift-section" id="gift">
         <div class="container">
           <div class="section-header" data-aos="fade-down">
             <div class="section-pre">Hadiah Pernikahan</div>
@@ -414,41 +673,58 @@
           </p>
 
           <div class="gift-grid">
-            <div class="gift-card" data-aos="fade-up" data-aos-delay="100">
+            <div
+              class="gift-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
               <div class="gift-badge">BCA</div>
               <div class="gift-type">
-                <i class="fas fa-university"></i> Transfer Bank (Pria)
+                <i class="fas fa-university"></i> Transfer Bank (Thaha)
               </div>
               <div class="account-row">
                 <span class="account-num" id="acc1">1234567890</span>
                 <button
                   class="btn-copy"
                   onclick="copyToClipboard('1234567890', this)"
+                  aria-label="Salin nomor rekening"
                 >
                   <i class="far fa-copy"></i>
                 </button>
               </div>
-              <div class="account-holder">a.n. [Nama Lengkap Pria]</div>
+              <div class="account-holder">a.n. Thaha Abdurrahman</div>
             </div>
 
-            <div class="gift-card" data-aos="fade-up" data-aos-delay="150">
+            <div
+              class="gift-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="150"
+            >
               <div class="gift-badge">Mandiri</div>
               <div class="gift-type">
-                <i class="fas fa-university"></i> Transfer Bank (Wanita)
+                <i class="fas fa-university"></i> Transfer Bank (Maryam)
               </div>
               <div class="account-row">
                 <span class="account-num" id="acc2">0987654321</span>
                 <button
                   class="btn-copy"
                   onclick="copyToClipboard('0987654321', this)"
+                  aria-label="Salin nomor rekening"
                 >
                   <i class="far fa-copy"></i>
                 </button>
               </div>
-              <div class="account-holder">a.n. [Nama Lengkap Wanita]</div>
+              <div class="account-holder">a.n. Maryam Khadijah</div>
             </div>
 
-            <div class="gift-card" data-aos="fade-up" data-aos-delay="200">
+            <div
+              class="gift-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
               <div class="gift-badge dana">DANA</div>
               <div class="gift-type">
                 <i class="fas fa-mobile-alt"></i> E-Wallet DANA
@@ -458,20 +734,26 @@
                 <button
                   class="btn-copy"
                   onclick="copyToClipboard('081234567890', this)"
+                  aria-label="Salin nomor DANA"
                 >
                   <i class="far fa-copy"></i>
                 </button>
               </div>
-              <div class="account-holder">a.n. [Nama Penerima]</div>
+              <div class="account-holder">a.n. Thaha Abdurrahman</div>
               <div class="ewallet-qr">
                 <img
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=081234567890&color=118ef5"
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=081234567890&color=118ef5"
                   alt="QR DANA"
                 />
               </div>
             </div>
 
-            <div class="gift-card" data-aos="fade-up" data-aos-delay="250">
+            <div
+              class="gift-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="250"
+            >
               <div class="gift-badge gopay">GoPay</div>
               <div class="gift-type">
                 <i class="fas fa-mobile-alt"></i> E-Wallet GoPay
@@ -481,14 +763,15 @@
                 <button
                   class="btn-copy"
                   onclick="copyToClipboard('081234567891', this)"
+                  aria-label="Salin nomor GoPay"
                 >
                   <i class="far fa-copy"></i>
                 </button>
               </div>
-              <div class="account-holder">a.n. [Nama Penerima]</div>
+              <div class="account-holder">a.n. Maryam Khadijah</div>
               <div class="ewallet-qr">
                 <img
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=081234567891&color=00aed6"
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=081234567891&color=00aed6"
                   alt="QR GoPay"
                 />
               </div>
@@ -504,7 +787,7 @@
       </section>
 
       <!-- RSVP Section -->
-      <section class="rsvp-section">
+      <section class="rsvp-section" id="rsvp">
         <div class="rsvp-bg"></div>
         <div class="container">
           <div class="section-header light" data-aos="fade-down">
@@ -512,10 +795,12 @@
             <h2 class="section-title">Kehadiran Anda</h2>
             <div class="section-ornament">✦ ✦ ✦</div>
           </div>
+
           <form
             id="rsvpForm"
             class="rsvp-form"
             data-aos="fade-up"
+            data-aos-duration="1000"
             data-aos-delay="100"
           >
             <div class="form-row">
@@ -568,7 +853,7 @@
       </section>
 
       <!-- Wishes Section -->
-      <section class="wishes-section">
+      <section class="wishes-section" id="wishes">
         <div class="container">
           <div class="section-header" data-aos="fade-down">
             <div class="section-pre">Dari Tamu Undangan</div>
@@ -580,10 +865,10 @@
       </section>
 
       <!-- Closing Section -->
-      <section class="closing-section">
+      <section class="closing-section" id="closing">
         <div class="closing-bg"></div>
         <div class="container">
-          <div class="closing-wrap" data-aos="zoom-in">
+          <div class="closing-wrap" data-aos="zoom-in" data-aos-duration="1200">
             <div class="closing-bismillah">
               جَزَاكُمُ اللَّهُ خَيْرًا كَثِيرًا
             </div>
@@ -603,10 +888,7 @@
             </div>
             <div class="closing-family">
               Hormat kami,<br />
-              <strong
-                >Keluarga Besar [Nama Keluarga Pria] & [Nama Keluarga
-                Wanita]</strong
-              >
+              <strong>Keluarga Besar Rasyid & Hasan</strong>
             </div>
 
             <div class="share-row">
@@ -623,23 +905,32 @@
 
       <footer>
         <div class="footer-inner">
-          <div class="footer-names">[Nama Pria] & [Nama Wanita]</div>
+          <div class="footer-names">Thaha & Maryam</div>
           <div class="footer-date">25 Oktober 2025</div>
           <p>Made with <i class="fas fa-heart"></i> for our special day</p>
         </div>
       </footer>
     </main>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
 
     <!-- Audio Players -->
-    <audio id="song1" loop>
+    <audio id="song1" preload="metadata">
+      <source src="assets/music-islami.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="song2" preload="metadata">
       <source src="assets/music-islami.mp3" type="audio/mpeg" />
     </audio>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
