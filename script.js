@@ -1,16 +1,60 @@
 /* ============================================
-   WEDDING INVITATION — script.js
-   Enhanced with Music Player & Visual Effects
+   WEDDING INVITATION — ENHANCED EDITION
+   With Advanced Animations & Interactions
    ============================================ */
 
+// ============ PRELOADER ============
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    const preloader = document.querySelector(".preloader");
+    if (preloader) {
+      preloader.classList.add("fade-out");
+    }
+  }, 1500);
+});
+
 // ============ INIT AOS ============
-AOS.init({ duration: 900, once: true, offset: 80, easing: "ease-out-cubic" });
+AOS.init({
+  duration: 900,
+  once: false,
+  offset: 80,
+  easing: "ease-out-cubic",
+  mirror: true,
+});
+
+// ============ SWIPER INIT ============
+const gallerySwiper = new Swiper(".gallery-swiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 3,
+    },
+  },
+  effect: "coverflow",
+  coverflowEffect: {
+    rotate: 30,
+    slideShadows: false,
+  },
+});
 
 // ============ PARTICLES ============
 (function createParticles() {
   const container = document.getElementById("particles");
   if (!container) return;
-  const count = window.innerWidth < 600 ? 15 : 30;
+  const count = window.innerWidth < 600 ? 20 : 40;
   for (let i = 0; i < count; i++) {
     const p = document.createElement("div");
     p.className = "particle";
@@ -19,9 +63,9 @@ AOS.init({ duration: 900, once: true, offset: 80, easing: "ease-out-cubic" });
       width: ${size}px;
       height: ${size}px;
       left: ${Math.random() * 100}%;
-      animation-duration: ${Math.random() * 15 + 12}s;
-      animation-delay: ${Math.random() * 10}s;
-      opacity: ${Math.random() * 0.3};
+      animation-duration: ${Math.random() * 20 + 15}s;
+      animation-delay: ${Math.random() * 15}s;
+      opacity: ${Math.random() * 0.3 + 0.1};
     `;
     container.appendChild(p);
   }
@@ -39,17 +83,17 @@ AOS.init({ duration: 900, once: true, offset: 80, easing: "ease-out-cubic" });
     "#b8e6c8",
     "#a8d5b8",
   ];
-  const count = window.innerWidth < 600 ? 10 : 20;
+  const count = window.innerWidth < 600 ? 15 : 25;
   for (let i = 0; i < count; i++) {
     const petal = document.createElement("div");
     petal.className = "petal";
     petal.style.cssText = `
       left: ${Math.random() * 100}%;
       background: ${colors[Math.floor(Math.random() * colors.length)]};
-      animation-duration: ${Math.random() * 12 + 10}s;
-      animation-delay: ${Math.random() * 12}s;
-      width: ${Math.random() * 10 + 7}px;
-      height: ${Math.random() * 12 + 9}px;
+      animation-duration: ${Math.random() * 15 + 12}s;
+      animation-delay: ${Math.random() * 15}s;
+      width: ${Math.random() * 12 + 8}px;
+      height: ${Math.random() * 14 + 10}px;
       transform: rotate(${Math.random() * 360}deg);
     `;
     container.appendChild(petal);
@@ -63,15 +107,17 @@ function openInvitation() {
 
   cover.style.transition = "opacity 0.8s ease, transform 0.8s ease";
   cover.style.opacity = "0";
-  cover.style.transform = "scale(1.03)";
+  cover.style.transform = "scale(1.05)";
 
   setTimeout(() => {
     cover.style.display = "none";
     main.style.display = "block";
     main.style.opacity = "0";
-    main.style.transition = "opacity 0.6s ease";
+    main.style.transition = "opacity 0.8s ease";
     setTimeout(() => {
       main.style.opacity = "1";
+      // Trigger AOS refresh
+      AOS.refresh();
     }, 50);
     window.scrollTo({ top: 0, behavior: "smooth" });
     localStorage.setItem("invitationOpened", "true");
@@ -85,6 +131,7 @@ window.onload = function () {
   if (localStorage.getItem("invitationOpened") === "true") {
     document.getElementById("cover").style.display = "none";
     document.getElementById("mainContent").style.display = "block";
+    AOS.refresh();
   }
 
   // Set guest name from URL
@@ -106,6 +153,7 @@ window.onload = function () {
   setInterval(updateCountdown, 1000);
   loadWishes();
   initMusicPlayer();
+  initScrollEffects();
 };
 
 // ============ COUNTDOWN ============
@@ -142,12 +190,12 @@ function updateCountdown() {
 
 function animateNumber(el, newVal) {
   if (el.textContent !== newVal) {
-    el.style.transform = "scale(1.15)";
-    el.style.transition = "transform 0.15s";
+    el.style.transform = "scale(1.2)";
+    el.style.transition = "transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)";
     el.textContent = newVal;
     setTimeout(() => {
       el.style.transform = "scale(1)";
-    }, 150);
+    }, 200);
   }
 }
 
@@ -155,14 +203,18 @@ function animateNumber(el, newVal) {
 const playlist = [
   {
     title: "Sholawat Nabi — Ya Nabi Salam",
-    // Placeholder MP3s — replace with your actual Islamic nasheeds
     src: "assets/music-islami.mp3",
-    fallback: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    artist: "Qasidah Modern",
   },
   {
     title: "Sholawat — Tholaal Badru",
-    src: "assets/music-islami-2.mp3",
-    fallback: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    src: "assets/music-islami.mp3",
+    artist: "Nasyid Cinta",
+  },
+  {
+    title: "Sholawat — Ya Robbi Bil Mustofa",
+    src: "assets/music-islami.mp3",
+    artist: "Hadroh Al-Banjari",
   },
 ];
 
@@ -178,14 +230,7 @@ function initMusicPlayer() {
 
   audioEl.addEventListener("ended", nextSong);
   audioEl.addEventListener("timeupdate", updateProgress);
-  audioEl.addEventListener("error", function () {
-    // Try fallback source
-    const fallback = playlist[currentSongIndex].fallback;
-    if (audioEl.src !== fallback) {
-      audioEl.src = fallback;
-      if (isPlaying) audioEl.play().catch(() => {});
-    }
-  });
+  audioEl.addEventListener("loadedmetadata", updateDuration);
 
   loadSong(currentSongIndex);
 
@@ -193,19 +238,55 @@ function initMusicPlayer() {
   document.getElementById("playPauseBtn").addEventListener("click", togglePlay);
   document.getElementById("prevSong").addEventListener("click", prevSong);
   document.getElementById("nextSong").addEventListener("click", nextSong);
+
+  // Volume control
+  const volumeControl = document.getElementById("volumeControl");
+  const volumeIcon = document.getElementById("volumeIcon");
+
+  volumeControl.addEventListener("input", function (e) {
+    audioEl.volume = e.target.value;
+    updateVolumeIcon(e.target.value);
+  });
+
+  volumeIcon.addEventListener("click", function () {
+    if (audioEl.volume > 0) {
+      audioEl.muted = !audioEl.muted;
+      volumeIcon.className = audioEl.muted
+        ? "fas fa-volume-mute"
+        : "fas fa-volume-up";
+    }
+  });
+}
+
+function updateVolumeIcon(volume) {
+  const icon = document.getElementById("volumeIcon");
+  if (volume == 0) {
+    icon.className = "fas fa-volume-off";
+  } else if (volume < 0.5) {
+    icon.className = "fas fa-volume-down";
+  } else {
+    icon.className = "fas fa-volume-up";
+  }
 }
 
 function loadSong(index) {
   const song = playlist[index];
   audioEl.src = song.src;
   document.getElementById("songTitle").textContent = song.title;
+  document.querySelector(".music-artist").textContent = song.artist;
   document.getElementById("progressFill").style.width = "0%";
+  document.getElementById("currentTime").textContent = "0:00";
+}
 
-  // Test if local file exists, else use fallback
-  const tester = new Audio(song.src);
-  tester.addEventListener("error", () => {
-    audioEl.src = song.fallback;
-  });
+function updateDuration() {
+  const duration = formatTime(audioEl.duration);
+  document.getElementById("duration").textContent = duration;
+}
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
 }
 
 function tryPlayMusic() {
@@ -214,6 +295,7 @@ function tryPlayMusic() {
     .play()
     .then(() => {
       setPlayingState(true);
+      startProgressUpdate();
     })
     .catch(() => {
       setPlayingState(false);
@@ -225,11 +307,13 @@ function togglePlay() {
   if (isPlaying) {
     audioEl.pause();
     setPlayingState(false);
+    clearInterval(progressInterval);
   } else {
     audioEl
       .play()
       .then(() => {
         setPlayingState(true);
+        startProgressUpdate();
       })
       .catch(() => {
         showToast("Tap sekali lagi untuk memulai musik");
@@ -245,10 +329,6 @@ function setPlayingState(playing) {
 
   if (muteBtn)
     muteBtn.querySelector("i").className = playing
-      ? "fas fa-music"
-      : "fas fa-music-slash fas fa-volume-mute";
-  if (muteBtn)
-    muteBtn.querySelector("i").className = playing
       ? "fas fa-volume-up"
       : "fas fa-volume-mute";
   if (playBtn)
@@ -261,31 +341,63 @@ function setPlayingState(playing) {
   }
 }
 
+function startProgressUpdate() {
+  if (progressInterval) clearInterval(progressInterval);
+  progressInterval = setInterval(() => {
+    if (audioEl && isPlaying) {
+      updateProgress();
+    }
+  }, 100);
+}
+
 function nextSong() {
   currentSongIndex = (currentSongIndex + 1) % playlist.length;
   loadSong(currentSongIndex);
-  if (isPlaying) audioEl.play().catch(() => {});
+  if (isPlaying) {
+    audioEl.play().catch(() => {});
+    startProgressUpdate();
+  }
 }
 
 function prevSong() {
   currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
   loadSong(currentSongIndex);
-  if (isPlaying) audioEl.play().catch(() => {});
+  if (isPlaying) {
+    audioEl.play().catch(() => {});
+    startProgressUpdate();
+  }
 }
 
 function updateProgress() {
   if (!audioEl || !audioEl.duration) return;
   const pct = (audioEl.currentTime / audioEl.duration) * 100;
   const fill = document.getElementById("progressFill");
+  const currentTime = document.getElementById("currentTime");
   if (fill) fill.style.width = pct + "%";
+  if (currentTime) currentTime.textContent = formatTime(audioEl.currentTime);
 }
 
-// Auto-play after first user interaction
+// Auto-play after first user interaction with better handling
+let userInteracted = false;
 document.addEventListener(
   "click",
   function initPlayOnInteraction() {
-    tryPlayMusic();
-    document.removeEventListener("click", initPlayOnInteraction);
+    if (!userInteracted) {
+      userInteracted = true;
+      tryPlayMusic();
+    }
+  },
+  { once: true },
+);
+
+// Also try on touch for mobile
+document.addEventListener(
+  "touchstart",
+  function initPlayOnTouch() {
+    if (!userInteracted) {
+      userInteracted = true;
+      tryPlayMusic();
+    }
   },
   { once: true },
 );
@@ -297,7 +409,46 @@ document.getElementById("toggleTheme").addEventListener("click", function () {
   const isDark = document.body.classList.contains("dark-theme");
   icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
   localStorage.setItem("theme", isDark ? "dark" : "light");
+
+  // Add animation effect
+  this.style.transform = "rotate(360deg)";
+  setTimeout(() => {
+    this.style.transform = "";
+  }, 500);
 });
+
+// ============ SCROLL TO TOP ============
+document.getElementById("scrollTop").addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Back to top button
+const backToTop = document.getElementById("backToTop");
+window.addEventListener("scroll", function () {
+  if (window.scrollY > 500) {
+    backToTop.classList.add("show");
+  } else {
+    backToTop.classList.remove("show");
+  }
+});
+
+backToTop.addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ============ SCROLL PROGRESS ============
+function initScrollEffects() {
+  const progressBar = document.getElementById("scrollProgress");
+
+  window.addEventListener("scroll", function () {
+    const winScroll = document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    if (progressBar) progressBar.style.width = scrolled + "%";
+  });
+}
 
 // ============ COPY TO CLIPBOARD ============
 function copyToClipboard(text, btn) {
@@ -357,7 +508,7 @@ document.getElementById("rsvpForm").addEventListener("submit", function (e) {
   const rsvpData = {
     name,
     attendance,
-    guests,
+    guests: guests || "1",
     message,
     timestamp: new Date().toISOString(),
   };
@@ -403,7 +554,17 @@ function addWishToList(name, message) {
     <div class="wish-text">"${escapeHtml(message)}"</div>
     <div class="wish-date">${new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</div>
   `;
+
+  // Add with animation
+  card.style.opacity = "0";
+  card.style.transform = "translateX(-30px)";
   container.insertBefore(card, container.firstChild);
+
+  setTimeout(() => {
+    card.style.transition = "all 0.5s ease";
+    card.style.opacity = "1";
+    card.style.transform = "translateX(0)";
+  }, 50);
 }
 
 function loadWishes() {
@@ -452,7 +613,13 @@ window.addEventListener(
     const petals = document.querySelector(".petals-container");
     if (petals) petals.style.transform = `translateY(${scrolled * 0.15}px)`;
 
-    // Hide music bar when scrolling up fast (optional UX)
+    // Parallax floating orbs
+    const orbs = document.querySelectorAll(".orb");
+    orbs.forEach((orb, index) => {
+      const speed = 0.1 * (index + 1);
+      orb.style.transform = `translate(${scrolled * speed}px, ${scrolled * speed * 0.5}px)`;
+    });
+
     const diff = scrolled - lastScrollY;
     lastScrollY = scrolled;
 
@@ -465,6 +632,17 @@ window.addEventListener(
   { passive: true },
 );
 
+// ============ COUNTDOWN BOX MOUSE MOVE EFFECT ============
+document.querySelectorAll(".countdown-box").forEach((box) => {
+  box.addEventListener("mousemove", (e) => {
+    const rect = box.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    box.style.setProperty("--x", `${x}%`);
+    box.style.setProperty("--y", `${y}%`);
+  });
+});
+
 // ============ TOUCH IMPROVEMENTS ============
 document.addEventListener(
   "touchmove",
@@ -472,13 +650,55 @@ document.addEventListener(
     if (e.touches.length > 1) return; // allow pinch-zoom
     const tag = e.target.tagName;
     if (tag !== "TEXTAREA" && tag !== "INPUT" && tag !== "SELECT") {
-      // Allow normal scrolling, don't preventDefault
+      // Allow normal scrolling
     }
   },
   { passive: true },
 );
 
+// ============ INTERSECTION OBSERVER FOR ANIMATIONS ============
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+
+        // Animate countdown boxes when in view
+        if (entry.target.classList.contains("countdown-grid")) {
+          const boxes = entry.target.querySelectorAll(".countdown-box");
+          boxes.forEach((box, index) => {
+            setTimeout(() => {
+              box.style.animation = "boxFloat 3s ease-in-out infinite";
+            }, index * 200);
+          });
+        }
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+
+document
+  .querySelectorAll(".section-header, .countdown-grid, .event-card, .gift-card")
+  .forEach((el) => {
+    observer.observe(el);
+  });
+
 // ============ LOADED ============
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
+
+  // Preload images
+  const images = document.querySelectorAll("img");
+  images.forEach((img) => {
+    if (img.dataset.src) {
+      img.src = img.dataset.src;
+    }
+  });
+});
+
+// ============ ERROR HANDLING ============
+window.addEventListener("error", function (e) {
+  console.log("Error:", e.message);
+  // Silent fail for better UX
 });
