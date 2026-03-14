@@ -3250,9 +3250,6 @@ footer i {
   .cover-inner {
     padding: 36px 24px;
   }
-  .name-arabic {
-    font-size: 2.4rem;
-  }
   .cover-date-num {
     font-size: 3.8rem;
   }
@@ -3294,12 +3291,6 @@ footer i {
 }
 
 @media (max-width: 480px) {
-  .cover-names {
-    gap: 6px;
-  }
-  .ampersand-wrap {
-    width: 30px;
-  }
   .quran-card {
     padding: 36px 20px;
   }
@@ -3309,9 +3300,6 @@ footer i {
   .share-row {
     flex-direction: column;
     align-items: center;
-  }
-  .gift-badge {
-    font-size: 0.65rem;
   }
   .nav-buttons {
     top: 10px;
