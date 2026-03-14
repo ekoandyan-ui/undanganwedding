@@ -700,8 +700,8 @@ body.dark-theme .cover-card {
 .bismillah-cover {
   font-family: "Amiri", serif;
   font-size: 1.8rem;
-  color: var(--emerald);
-  margin-bottom: 18px;
+  color: var(--brown-dark);
+  margin-bottom: 5px;
   line-height: 1.8;
   animation: fadeInUp 1s ease forwards;
   position: relative;
@@ -739,8 +739,8 @@ body.dark-theme .cover-card {
 .cover-tag {
   font-family: "Cinzel", serif;
   letter-spacing: 5px;
-  font-size: 0.72rem;
-  color: var(--text-soft);
+  font-size: 1rem;
+  color: black;
   text-transform: uppercase;
   margin-bottom: 28px;
   animation: fadeInUp 1s ease 0.2s forwards;
@@ -760,14 +760,15 @@ body.dark-theme .cover-card {
 }
 
 .cover-latin-names {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.5rem;
-  font-weight: 300;
-  font-style: italic;
+  font-family: "Carattere", cursive;
+  font-size: 3rem; /* Diperbesar karena font script terlihat lebih kecil */
+  font-weight: 400;
+  font-style: normal;
   color: var(--text-soft);
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   animation: fadeInUp 1s ease 0.6s forwards;
   opacity: 0;
+  line-height: 1.2;
 }
 
 .gold-divider {
@@ -775,7 +776,7 @@ body.dark-theme .cover-card {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   animation: fadeIn 1s ease 0.8s forwards;
   opacity: 0;
 }
@@ -828,14 +829,14 @@ body.dark-theme .cover-card {
 }
 
 .cover-date-wrap {
-  margin-bottom: 22px;
+  margin-bottom: 18px;
   animation: fadeInUp 1s ease 1s forwards;
   opacity: 0;
 }
 
 .cover-date-day {
   font-family: "Cinzel", serif;
-  font-size: 0.8rem;
+  font-size: 1rem;
   letter-spacing: 4px;
   color: var(--text-soft);
   text-transform: uppercase;
@@ -847,23 +848,23 @@ body.dark-theme .cover-card {
   font-weight: 600;
   color: var(--gold);
   line-height: 1;
-  margin-top: -15px;
+  margin-top: -20px;
   text-shadow: 2px 2px 10px rgba(201, 168, 76, 0.3);
 }
 
 .cover-date-month {
   font-family: "Cinzel", serif;
-  font-size: 0.85rem;
+  font-size: 1rem;
   letter-spacing: 3px;
-  color: var(--brown-mid);
-  margin-top: 10px;
+  color: var(--text-soft);
+  margin-top: 5px;
 }
 
 .cover-guest {
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   color: var(--text-soft);
   margin-bottom: 30px;
-  line-height: 1.7;
+  line-height: 14px;
   animation: fadeInUp 1s ease 1.2s forwards;
   opacity: 0;
 }
@@ -873,6 +874,8 @@ body.dark-theme .cover-card {
   color: var(--gold-dark);
   position: relative;
   display: inline-block;
+  margin-top: 20px;
+  font-size: 1rem;
 }
 
 .cover-guest span::after {
@@ -967,7 +970,7 @@ body.dark-theme .cover-card {
 /* ============ SECTION HEADER ============ */
 .section-header {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -992,11 +995,10 @@ body.dark-theme .cover-card {
 }
 
 .section-pre {
-  font-family: "Cinzel", serif;
-  font-size: 0.72rem;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0, 75rem;
+
+  color: var(--gold-dark);
   margin-bottom: 8px;
   animation: slideInDown 1s ease;
 }
@@ -1012,32 +1014,12 @@ body.dark-theme .cover-card {
   }
 }
 
-.section-title {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2.8rem;
-  font-weight: 600;
-  color: var(--text-main);
-  line-height: 1.1;
-  margin-bottom: 14px;
-  animation: scaleIn 1s ease;
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 .section-ornament {
   color: var(--gold);
   font-size: 0.7rem;
   letter-spacing: 8px;
   animation: fadeIn 1s ease;
+  margin-bottom: 15px;
 }
 
 .section-header.light .section-title,
@@ -1323,15 +1305,6 @@ body.dark-theme .couple-section {
   transform: scale(1.1);
 }
 
-.couple-label {
-  font-family: "Cinzel", serif;
-  font-size: 0.65rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-
 .couple-name {
   font-family: "Cormorant Garamond", serif;
   font-size: 1.8rem;
@@ -1475,14 +1448,6 @@ body.dark-theme .couple-section {
   50% {
     transform: scale(1.15);
   }
-}
-
-.arabic-and {
-  font-family: "Amiri", serif;
-  font-size: 2.5rem;
-  color: var(--gold);
-  display: block;
-  animation: fadeInScale 1s ease;
 }
 
 /* ============ STORY SECTION ============ */

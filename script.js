@@ -237,7 +237,7 @@ const playlist = [
   },
   {
     title: "Sholawat — Tholaal Badru",
-    src: "assets/music-islami.mp3",
+    src: "assets/music-islami-2.mp3",
     artist: "Nasyid Cinta",
   },
   {
