@@ -353,8 +353,10 @@
         </div>
 
         <div class="event-grid">
+          <!-- Card Akad Nikah -->
           <div class="event-card" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="100">
             <div class="event-card-bg"></div>
+            <div class="event-pattern"></div>
             <div class="event-icon-wrap">
               <div class="event-icon-ring"></div>
               <i class="fas fa-mosque event-icon"></i>
@@ -372,10 +374,13 @@
               <i class="fas fa-map-marker-alt"></i>
               <span>Masjid Raya Baiturrahman</span>
             </div>
+            <div class="event-glow"></div>
           </div>
 
+          <!-- Card Resepsi -->
           <div class="event-card" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="200">
             <div class="event-card-bg"></div>
+            <div class="event-pattern"></div>
             <div class="event-icon-wrap">
               <div class="event-icon-ring"></div>
               <i class="fas fa-utensils event-icon"></i>
@@ -393,6 +398,7 @@
               <i class="fas fa-map-marker-alt"></i>
               <span>Gedung Serbaguna Al-Hijrah</span>
             </div>
+            <div class="event-glow"></div>
           </div>
         </div>
 
@@ -512,89 +518,91 @@
       </div>
     </section>
 
-    <!-- Gift / Digital Envelope -->
     <section class="gift-section" id="gift">
-      <div class="container">
-        <div class="section-header" data-aos="fade-down">
-          <div class="section-pre">Hadiah Pernikahan</div>
-          <h2 class="section-title">Amplop Digital</h2>
-          <div class="section-ornament">✦ ✦ ✦</div>
+      <div class="section-header" data-aos="fade-down">
+        <div class="section-pre">Hadiah Pernikahan</div>
+        <h2 class="section-title">Amplop Digital</h2>
+        <div class="section-ornament">✦ ✦ ✦</div>
+      </div>
+      
+      <p class="gift-subtitle" data-aos="fade-up">
+        Doa restu Anda adalah hadiah terbaik. Namun jika berkenan memberikan
+        hadiah secara virtual:
+      </p>
+
+      <div class="gift-grid">
+        <!-- BSI Card (Thaha) -->
+        <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+          <div class="gift-badge bsi">BSI</div>
+          <div class="gift-type">
+            <i class="fas fa-university"></i> Transfer Bank (Thaha)
+          </div>
+          <div class="account-row">
+            <span class="account-num" id="acc1">1234567890</span>
+            <button class="btn-copy" onclick="copyToClipboard('1234567890', this)" aria-label="Salin nomor rekening">
+              <i class="far fa-copy"></i>
+            </button>
+          </div>
+          <div class="account-holder">a.n. Thaha Abdurrahman</div>
         </div>
-        <p class="gift-subtitle" data-aos="fade-up">
-          Doa restu Anda adalah hadiah terbaik. Namun jika berkenan memberikan
-          hadiah secara virtual:
-        </p>
 
-        <div class="gift-grid">
-          <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-            <div class="gift-badge">BCA</div>
-            <div class="gift-type">
-              <i class="fas fa-university"></i> Transfer Bank (Thaha)
-            </div>
-            <div class="account-row">
-              <span class="account-num" id="acc1">1234567890</span>
-              <button class="btn-copy" onclick="copyToClipboard('1234567890', this)" aria-label="Salin nomor rekening">
-                <i class="far fa-copy"></i>
-              </button>
-            </div>
-            <div class="account-holder">a.n. Thaha Abdurrahman</div>
+        <!-- BRI Card (Maryam) -->
+        <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+          <div class="gift-badge bri">BRI</div>
+          <div class="gift-type">
+            <i class="fas fa-university"></i> Transfer Bank (Maryam)
           </div>
-
-          <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
-            <div class="gift-badge">Mandiri</div>
-            <div class="gift-type">
-              <i class="fas fa-university"></i> Transfer Bank (Maryam)
-            </div>
-            <div class="account-row">
-              <span class="account-num" id="acc2">0987654321</span>
-              <button class="btn-copy" onclick="copyToClipboard('0987654321', this)" aria-label="Salin nomor rekening">
-                <i class="far fa-copy"></i>
-              </button>
-            </div>
-            <div class="account-holder">a.n. Maryam Khadijah</div>
+          <div class="account-row">
+            <span class="account-num" id="acc2">0987654321</span>
+            <button class="btn-copy" onclick="copyToClipboard('0987654321', this)" aria-label="Salin nomor rekening">
+              <i class="far fa-copy"></i>
+            </button>
           </div>
+          <div class="account-holder">a.n. Maryam Khadijah</div>
+        </div>
 
-          <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-            <div class="gift-badge dana">DANA</div>
-            <div class="gift-type">
-              <i class="fas fa-mobile-alt"></i> E-Wallet DANA
-            </div>
-            <div class="account-row">
-              <span class="account-num" id="acc3">081234567890</span>
-              <button class="btn-copy" onclick="copyToClipboard('081234567890', this)" aria-label="Salin nomor DANA">
-                <i class="far fa-copy"></i>
-              </button>
-            </div>
-            <div class="account-holder">a.n. Thaha Abdurrahman</div>
-            <div class="ewallet-qr">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=081234567890&color=118ef5"
-                alt="QR DANA" />
-            </div>
+        <!-- DANA E-Wallet -->
+        <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+          <div class="gift-badge dana">DANA</div>
+          <div class="gift-type">
+            <i class="fas fa-mobile-alt"></i> E-Wallet DANA
           </div>
-
-          <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="250">
-            <div class="gift-badge gopay">GoPay</div>
-            <div class="gift-type">
-              <i class="fas fa-mobile-alt"></i> E-Wallet GoPay
-            </div>
-            <div class="account-row">
-              <span class="account-num" id="acc4">081234567891</span>
-              <button class="btn-copy" onclick="copyToClipboard('081234567891', this)" aria-label="Salin nomor GoPay">
-                <i class="far fa-copy"></i>
-              </button>
-            </div>
-            <div class="account-holder">a.n. Maryam Khadijah</div>
-            <div class="ewallet-qr">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=081234567891&color=00aed6"
-                alt="QR GoPay" />
-            </div>
+          <div class="account-row">
+            <span class="account-num" id="acc3">081234567890</span>
+            <button class="btn-copy" onclick="copyToClipboard('081234567890', this)" aria-label="Salin nomor DANA">
+              <i class="far fa-copy"></i>
+            </button>
+          </div>
+          <div class="account-holder">a.n. Thaha Abdurrahman</div>
+          <div class="ewallet-qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=081234567890&color=118ef5"
+                 alt="QR Code DANA">
           </div>
         </div>
 
-        <div class="gift-note" data-aos="fade-up">
-          <i class="fas fa-heart"></i> Terima kasih atas doa dan kebaikan yang
-          diberikan. Semoga Allah SWT membalas kebaikan Anda berlipat ganda.
+        <!-- GoPay E-Wallet -->
+        <div class="gift-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="250">
+          <div class="gift-badge gopay">GoPay</div>
+          <div class="gift-type">
+            <i class="fas fa-mobile-alt"></i> E-Wallet GoPay
+          </div>
+          <div class="account-row">
+            <span class="account-num" id="acc4">081234567891</span>
+            <button class="btn-copy" onclick="copyToClipboard('081234567891', this)" aria-label="Salin nomor GoPay">
+              <i class="far fa-copy"></i>
+            </button>
+          </div>
+          <div class="account-holder">a.n. Maryam Khadijah</div>
+          <div class="ewallet-qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=081234567891&color=00aed6"
+                 alt="QR Code GoPay">
+          </div>
         </div>
+      </div>
+
+      <div class="gift-note" data-aos="fade-up">
+        <i class="fas fa-heart"></i> Terima kasih atas doa dan kebaikan yang
+        diberikan. Semoga Allah SWT membalas kebaikan Anda berlipat ganda.
       </div>
     </section>
 
