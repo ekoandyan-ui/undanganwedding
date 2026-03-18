@@ -1822,7 +1822,6 @@ body.dark-theme .couple-section {
 
 .countdown-message i {
   color: var(--gold);
-  animation: spin 4s linear infinite;
 }
 
 /* === EVENT SECTION === */
@@ -1903,7 +1902,7 @@ body.dark-theme .couple-section {
   background: linear-gradient(
     135deg,
     rgba(201, 168, 76, 0.15),
-    rgba(45, 94, 90, 0.1)
+    rgba(201, 168, 76, 0.08)
   );
   transform: translateY(100%);
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2047,9 +2046,7 @@ body.dark-theme .couple-section {
   margin-bottom: 12px;
   font-size: 1rem;
   color: var(--text-soft);
-  transition:
-    transform 0.3s ease,
-    color 0.3s;
+  transition: color 0.3s; /* Hanya transisi warna yang dipertahankan */
   position: relative;
   z-index: 3;
 }
@@ -2061,8 +2058,11 @@ body.dark-theme .couple-section {
 }
 
 .event-card:hover .event-detail {
-  transform: translateX(6px);
-  color: #2a2a2a;
+  /* transform: translateX(6px); -> DIHAPUS agar teks tidak bergeser */
+  color: #2a2a2a; /* Warna saat hover, sesuaikan dengan tema */
+}
+body.dark-theme .event-card:hover .event-detail {
+  color: var(--gold-light); /* Warna teks saat hover untuk tema gelap */
 }
 
 .event-card:hover .event-detail i {
@@ -2643,6 +2643,207 @@ body.dark-theme .streaming-text h3 {
 
 .gift-card:hover::before {
   transform: translateX(0);
+}
+
+/* ===== Card Header with Logo and Badge ===== */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Bank/E-Wallet Logos ===== */
+.card-logo {
+  width: 60px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 6px;
+  transition: all 0.3s ease;
+}
+
+.card-logo:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Logo specific adjustments */
+.logo-bsi img {
+  object-fit: contain;
+}
+
+.logo-bri img {
+  object-fit: contain;
+}
+
+.logo-dana img {
+  object-fit: contain;
+}
+
+.logo-gopay img {
+  object-fit: contain;
+}
+
+.gift-badge {
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  display: inline-block;
+}
+
+.gift-badge.bsi {
+  background: linear-gradient(135deg, #1f5f3e, #0b4b2e);
+  color: #e4d9b4;
+}
+
+.gift-badge.bri {
+  background: linear-gradient(135deg, #0053a0, #003e7a);
+  color: #ffffff;
+}
+
+.gift-badge.dana {
+  background: linear-gradient(135deg, #0086cf, #006bb2);
+  color: #ffffff;
+}
+
+.gift-badge.gopay {
+  background: linear-gradient(135deg, #00aed6, #008bb0);
+  color: #ffffff;
+}
+
+.gift-type {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.gift-type i {
+  color: var(--gold);
+  margin-right: 8px;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(201, 168, 76, 0.05);
+  border-radius: 50px;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.account-num {
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+}
+
+.btn-copy {
+  background: transparent;
+  border: none;
+  color: var(--gold);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 5px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-copy:hover {
+  background: var(--gold);
+  color: white;
+  transform: scale(1.1);
+}
+
+.account-holder {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-left: 5px;
+}
+
+.ewallet-qr {
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px;
+  background: rgba(201, 168, 76, 0.03);
+  border-radius: 16px;
+  border: 1px dashed rgba(201, 168, 76, 0.3);
+}
+
+.ewallet-qr img {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.ewallet-qr img:hover {
+  transform: scale(1.05);
+}
+
+.gift-note {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  box-shadow: var(--shadow-sm);
+}
+
+.gift-note i {
+  color: var(--gold);
+  margin-right: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gift-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .card-header {
+    gap: 8px;
+  }
+
+  .card-logo {
+    width: 100px;
+    height: 40px;
+  }
+
+  .gift-badge {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
 }
 
 /* badge default (gold) */
