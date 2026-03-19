@@ -2650,7 +2650,7 @@ body.dark-theme .streaming-text h3 {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   position: relative;
   z-index: 2;
 }
@@ -2662,7 +2662,6 @@ body.dark-theme .streaming-text h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
   padding: 6px;
   transition: all 0.3s ease;
 }
@@ -2693,36 +2692,6 @@ body.dark-theme .streaming-text h3 {
 
 .logo-gopay img {
   object-fit: contain;
-}
-
-.gift-badge {
-  padding: 6px 14px;
-  border-radius: 30px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-  display: inline-block;
-}
-
-.gift-badge.bsi {
-  background: linear-gradient(135deg, #1f5f3e, #0b4b2e);
-  color: #e4d9b4;
-}
-
-.gift-badge.bri {
-  background: linear-gradient(135deg, #0053a0, #003e7a);
-  color: #ffffff;
-}
-
-.gift-badge.dana {
-  background: linear-gradient(135deg, #0086cf, #006bb2);
-  color: #ffffff;
-}
-
-.gift-badge.gopay {
-  background: linear-gradient(135deg, #00aed6, #008bb0);
-  color: #ffffff;
 }
 
 .gift-type {
