@@ -231,19 +231,19 @@ function animateNumber(el, newVal) {
 // ============ MUSIC PLAYER ============
 const playlist = [
   {
-    title: "Sholawat Nabi — Ya Nabi Salam",
-    src: "assets/music-islami.mp3",
-    artist: "Qasidah Modern",
+    title: "Pernikahan Kita",
+    src: "assets/lagu-1.mp3",
+    artist: "Tiara Andini feat Arsy Widianto",
   },
   {
-    title: "Sholawat — Tholaal Badru",
-    src: "assets/music-islami-2.mp3",
-    artist: "Nasyid Cinta",
+    title: "Menikahimu",
+    src: "assets/lagu-2.mp3",
+    artist: "Kahitna",
   },
   {
-    title: "Sholawat — Ya Robbi Bil Mustofa",
-    src: "assets/music-islami.mp3",
-    artist: "Hadroh Al-Banjari",
+    title: "Kasih Putih",
+    src: "assets/lagu-3.mp3",
+    artist: "Glenn Fredly",
   },
 ];
 
