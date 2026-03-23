@@ -782,6 +782,7 @@ body.dark-theme .cover-card {
 .cover-latin-names {
   font-family: "Carattere", cursive;
   font-size: 3rem;
+  /* Diperbesar karena font script terlihat lebih kecil */
   font-weight: 400;
   font-style: normal;
   color: var(--text-soft);
@@ -793,8 +794,11 @@ body.dark-theme .cover-card {
 
 .cover-latin-names .ampersand {
   font-size: 0.6em;
+  /* Make the ampersand smaller relative to the names */
   vertical-align: middle;
+  /* Adjust alignment so it stays balanced */
   margin: 0 4px;
+  /* Add slight spacing around the smaler ampersand */
 }
 
 .gold-divider {
@@ -1027,7 +1031,8 @@ body.dark-theme .cover-card {
 
 .section-pre {
   font-family: "Cormorant Garamond", serif;
-  font-size: 0.75rem;
+  font-size: 0, 75rem;
+
   color: var(--gold-dark);
   margin-bottom: 8px;
   animation: slideInDown 1s ease;
@@ -1681,7 +1686,9 @@ body.dark-theme .couple-section {
   display: flex;
   justify-content: center;
   gap: 10px;
+  /* Reduced gap to fit more elements */
   flex-wrap: nowrap;
+  /* Prevent wrapping so they stay in one row */
   margin-bottom: 30px;
 }
 
@@ -1692,7 +1699,9 @@ body.dark-theme .couple-section {
 
 .countdown-box {
   width: 75px;
+  /* Reduced width */
   height: 75px;
+  /* Reduced height */
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(201, 168, 76, 0.35);
   border-radius: var(--radius);
@@ -1763,6 +1772,7 @@ body.dark-theme .couple-section {
 .countdown-number {
   font-family: "Cormorant Garamond", serif;
   font-size: 2.2rem;
+  /* Reduced font size from 3rem */
   font-weight: 700;
   color: var(--gold-light);
   line-height: 1;
@@ -1777,11 +1787,14 @@ body.dark-theme .couple-section {
 .countdown-label {
   font-family: "Cinzel", serif;
   font-size: 0.55rem;
+  /* Reduced font size */
   letter-spacing: 2px;
+  /* Reduced letter spacing */
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
   display: block;
   margin-top: 5px;
+  /* Added margin to separate from numbber */
   animation: fadeIn 1s ease;
 }
 
@@ -1837,6 +1850,7 @@ body.dark-theme .couple-section {
   pointer-events: none;
 }
 
+/* === EVENT GRID === */
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1846,6 +1860,7 @@ body.dark-theme .couple-section {
   z-index: 2;
 }
 
+/* === EVENT CARD === */
 .event-card {
   position: relative;
   background: var(--white);
@@ -1861,6 +1876,7 @@ body.dark-theme .couple-section {
   isolation: isolate;
 }
 
+/* Pattern Latar */
 .event-pattern {
   position: absolute;
   inset: 0;
@@ -1915,6 +1931,7 @@ body.dark-theme .couple-section {
   z-index: 0;
 }
 
+/* Efek Glow */
 .event-glow {
   position: absolute;
   bottom: -20px;
@@ -1937,6 +1954,7 @@ body.dark-theme .couple-section {
   opacity: 1;
 }
 
+/* === ICON WRAP === */
 .event-icon-wrap {
   position: relative;
   width: 80px;
@@ -1985,6 +2003,7 @@ body.dark-theme .couple-section {
   }
 }
 
+/* === TAG & DIVIDER === */
 .event-tag {
   font-family: "Cormorant Garamond", serif;
   font-size: 2rem;
@@ -2018,6 +2037,7 @@ body.dark-theme .couple-section {
   background: linear-gradient(90deg, var(--emerald), var(--gold));
 }
 
+/* === DETAIL === */
 .event-detail {
   display: flex;
   align-items: center;
@@ -2026,7 +2046,7 @@ body.dark-theme .couple-section {
   margin-bottom: 12px;
   font-size: 1rem;
   color: var(--text-soft);
-  transition: color 0.3s;
+  transition: color 0.3s; /* Hanya transisi warna yang dipertahankan */
   position: relative;
   z-index: 3;
 }
@@ -2038,16 +2058,18 @@ body.dark-theme .couple-section {
 }
 
 .event-card:hover .event-detail {
-  color: #2a2a2a;
+  /* transform: translateX(6px); -> DIHAPUS agar teks tidak bergeser */
+  color: #2a2a2a; /* Warna saat hover, sesuaikan dengan tema */
 }
 body.dark-theme .event-card:hover .event-detail {
-  color: var(--gold-light);
+  color: var(--gold-light); /* Warna teks saat hover untuk tema gelap */
 }
 
 .event-card:hover .event-detail i {
   color: var(--emerald);
 }
 
+/* Responsive */
 @media (max-width: 640px) {
   .event-grid {
     gap: 24px;
@@ -2326,7 +2348,7 @@ body.dark-theme .location-info-modern h3 {
   transform: scale(1.3);
 }
 
-/* ===== GIFT SECTION ===== */
+/* ===== section styles ===== */
 .gift-section {
   background: var(--cream);
   padding: 60px 24px;
@@ -2407,6 +2429,7 @@ body.dark-theme .location-info-modern h3 {
   transform: translateX(0);
 }
 
+/* ===== Card Header with Logo and Badge ===== */
 .card-header {
   display: flex;
   align-items: center;
@@ -2416,6 +2439,7 @@ body.dark-theme .location-info-modern h3 {
   z-index: 2;
 }
 
+/* ===== Bank/E-Wallet Logos ===== */
 .card-logo {
   width: 60px;
   height: 40px;
@@ -2434,6 +2458,23 @@ body.dark-theme .location-info-modern h3 {
 .card-logo img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
+}
+
+/* Logo specific adjustments */
+.logo-bsi img {
+  object-fit: contain;
+}
+
+.logo-bri img {
+  object-fit: contain;
+}
+
+.logo-dana img {
+  object-fit: contain;
+}
+
+.logo-gopay img {
   object-fit: contain;
 }
 
@@ -2496,6 +2537,26 @@ body.dark-theme .location-info-modern h3 {
   margin-left: 5px;
 }
 
+.ewallet-qr {
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px;
+  background: rgba(201, 168, 76, 0.03);
+  border-radius: 16px;
+  border: 1px dashed rgba(201, 168, 76, 0.3);
+}
+
+.ewallet-qr img {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.ewallet-qr img:hover {
+  transform: scale(1.05);
+}
+
 .gift-note {
   text-align: center;
   margin-top: 50px;
@@ -2516,18 +2577,256 @@ body.dark-theme .location-info-modern h3 {
   margin-right: 8px;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .gift-grid {
     grid-template-columns: 1fr;
     gap: 25px;
   }
+
   .card-header {
     gap: 8px;
   }
+
   .card-logo {
     width: 100px;
     height: 40px;
   }
+
+  .gift-badge {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+}
+
+/* badge default (gold) */
+.gift-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px var(--gold);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--gold-light);
+  }
+}
+
+.gift-badge.dana {
+  background: linear-gradient(135deg, #118ef5, #0066cc);
+}
+
+.gift-badge.gopay {
+  background: linear-gradient(135deg, #00aed6, #007da8);
+}
+
+.gift-type {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gift-type i {
+  color: var(--gold);
+}
+
+.account-row {
+  background: var(--parchment);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 10px;
+  transition: all 0.3s;
+}
+
+.gift-card:hover .account-row {
+  border-color: var(--gold);
+  background: var(--cream);
+}
+
+.account-num {
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 1px;
+}
+
+.btn-copy {
+  background: var(--emerald);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s var(--transition-bounce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-copy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-copy:hover {
+  transform: scale(1.15) rotate(360deg);
+  box-shadow: 0 0 15px var(--emerald);
+}
+
+.btn-copy:hover::before {
+  opacity: 0.3;
+}
+
+.btn-copy.copied {
+  background: #22c55e;
+  animation: copiedJump 0.5s ease;
+}
+
+@keyframes copiedJump {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.account-holder {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+
+.ewallet-qr {
+  margin-top: 14px;
+  text-align: center;
+  padding: 10px;
+  background: var(--parchment);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.gift-card:hover .ewallet-qr {
+  background: var(--cream);
+}
+
+.ewallet-qr img {
+  border-radius: 6px;
+  transition: transform 0.5s;
+  max-width: 80px;
+  height: auto;
+}
+
+.ewallet-qr img:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.gift-note {
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(45, 106, 79, 0.06),
+    rgba(201, 168, 76, 0.06)
+  );
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 50px;
+  padding: 18px 32px;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: noteGlow 3s ease-in-out infinite;
+}
+
+@keyframes noteGlow {
+  0%,
+  100% {
+    border-color: rgba(201, 168, 76, 0.2);
+  }
+  50% {
+    border-color: var(--gold);
+  }
+}
+
+.gift-note i {
+  color: #e74c7c;
+  margin-right: 8px;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* small extra style for bank BRI/BSI consistency */
+.gift-card:first-child .gift-badge {
+  background: linear-gradient(135deg, #008b4b, #006837); /* BSI green nuance */
+}
+.gift-card:nth-child(2) .gift-badge {
+  background: linear-gradient(135deg, #003b7a, #002856); /* BRI blue */
+}
+
+/* keep dana & gopay badges overridden */
+.gift-badge.dana,
+.gift-badge.gopay {
+  background: var(--gold-dark); /* fallback, but specific classes already */
+}
+
+/* mobile fine-tune */
+@media (max-width: 650px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .gift-card {
+    padding: 22px;
+  }
+  .gift-note {
+    border-radius: 28px;
+  }
+}
+
+/* dummy font fallback for Cinzel */
+h2,
+.gift-badge {
+  font-family: "Cinzel", "Georgia", serif;
 }
 
 /* ============ RSVP SECTION ============ */
@@ -2676,6 +2975,8 @@ body.dark-theme .location-info-modern h3 {
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 10px 20px rgba(201, 168, 76, 0.3);
+
+  /* Menambahkan properti untuk posisi tengah */
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -2693,6 +2994,22 @@ body.dark-theme .location-info-modern h3 {
 .btn-submit:active {
   transform: translateY(-1px) translateX(-50%);
   box-shadow: 0 12px 20px rgba(201, 168, 76, 0.35);
+}
+
+.btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
+}
+
+@keyframes paperPlane {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
 }
 
 .rsvp-message {
@@ -3094,16 +3411,6 @@ footer i {
   animation: heartBeat 1.5s ease-in-out infinite;
 }
 
-@keyframes heartBeat {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-}
-
 /* ============ TOAST ============ */
 .toast {
   position: fixed;
@@ -3140,6 +3447,14 @@ footer i {
 
   .couple-center {
     order: -1;
+  }
+
+  .location-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .qr-card {
+    display: none;
   }
 
   .timeline::before {

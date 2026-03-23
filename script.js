@@ -15,8 +15,10 @@ window.addEventListener("load", function () {
 
 // ============ CLEAR INVITATION STATE ON PAGE LOAD ============
 window.addEventListener("pageshow", function (event) {
+  // Clear any saved state that would bypass the cover
   localStorage.removeItem("invitationOpened");
 
+  // Reset to cover view
   const cover = document.getElementById("cover");
   const main = document.getElementById("mainContent");
 
@@ -27,6 +29,7 @@ window.addEventListener("pageshow", function (event) {
     main.style.display = "none";
   }
 
+  // Reset music player state
   if (audioEl) {
     audioEl.pause();
     setPlayingState(false);
@@ -136,15 +139,18 @@ function openInvitation() {
     main.style.transition = "opacity 0.8s ease";
     setTimeout(() => {
       main.style.opacity = "1";
+      // Trigger AOS refresh
       AOS.refresh();
     }, 50);
     window.scrollTo({ top: 0, behavior: "smooth" });
+    // Auto-start music
     tryPlayMusic();
   }, 700);
 }
 
 // ============ ON LOAD ============
 window.onload = function () {
+  // Always show cover first
   const cover = document.getElementById("cover");
   const main = document.getElementById("mainContent");
 
@@ -155,6 +161,7 @@ window.onload = function () {
     main.style.display = "none";
   }
 
+  // Set guest name from URL parameter "to"
   const urlParams = new URLSearchParams(window.location.search);
   const guest = urlParams.get("to");
   if (guest) {
@@ -164,6 +171,7 @@ window.onload = function () {
     document.getElementById("guestName").textContent = "Bapak/Ibu/Sahabat";
   }
 
+  // Dark theme
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-theme");
     const icon = document.querySelector("#toggleTheme i");
@@ -260,6 +268,7 @@ function initMusicPlayer() {
   document.getElementById("prevSong").addEventListener("click", prevSong);
   document.getElementById("nextSong").addEventListener("click", nextSong);
 
+  // Volume control
   const volumeControl = document.getElementById("volumeControl");
   const volumeIcon = document.getElementById("volumeIcon");
 
@@ -397,6 +406,7 @@ function updateProgress() {
   if (currentTime) currentTime.textContent = formatTime(audioEl.currentTime);
 }
 
+// Auto-play after first user interaction
 let userInteracted = false;
 document.addEventListener(
   "click",
@@ -428,6 +438,7 @@ document.getElementById("toggleTheme").addEventListener("click", function () {
   icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
   localStorage.setItem("theme", isDark ? "dark" : "light");
 
+  // Add animation effect
   this.style.transform = "rotate(360deg)";
   setTimeout(() => {
     this.style.transform = "";
@@ -439,6 +450,7 @@ document.getElementById("scrollTop").addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// Back to top button
 const backToTop = document.getElementById("backToTop");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 500) {
@@ -481,6 +493,7 @@ function copyToClipboard(text, btn) {
       }, 2200);
     })
     .catch(() => {
+      // Fallback for browsers without clipboard API
       const ta = document.createElement("textarea");
       ta.value = text;
       ta.style.position = "fixed";
@@ -567,13 +580,10 @@ function addWishToList(name, message) {
   card.innerHTML = `
         <div class="wish-name">${escapeHtml(name)}</div>
         <div class="wish-text">"${escapeHtml(message)}"</div>
-        <div class="wish-date">${new Date().toLocaleDateString("id-ID", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })}</div>
+        <div class="wish-date">${new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</div>
     `;
 
+  // Add with animation
   card.style.opacity = "0";
   card.style.transform = "translateX(-30px)";
   container.insertBefore(card, container.firstChild);
@@ -627,20 +637,21 @@ window.addEventListener(
   () => {
     const scrolled = window.pageYOffset;
 
+    // Parallax petals container
     const petals = document.querySelector(".petals-container");
     if (petals) petals.style.transform = `translateY(${scrolled * 0.15}px)`;
 
+    // Parallax floating orbs
     const orbs = document.querySelectorAll(".orb");
     orbs.forEach((orb, index) => {
       const speed = 0.1 * (index + 1);
-      orb.style.transform = `translate(${scrolled * speed}px, ${
-        scrolled * speed * 0.5
-      }px)`;
+      orb.style.transform = `translate(${scrolled * speed}px, ${scrolled * speed * 0.5}px)`;
     });
 
     const diff = scrolled - lastScrollY;
     lastScrollY = scrolled;
 
+    // Reveal music bar when scrolled past header
     const musicBar = document.getElementById("musicBar");
     if (musicBar && isPlaying) {
       if (scrolled > 200) musicBar.classList.add("show");
@@ -664,9 +675,10 @@ document.querySelectorAll(".countdown-box").forEach((box) => {
 document.addEventListener(
   "touchmove",
   function (e) {
-    if (e.touches.length > 1) return;
+    if (e.touches.length > 1) return; // allow pinch-zoom
     const tag = e.target.tagName;
     if (tag !== "TEXTAREA" && tag !== "INPUT" && tag !== "SELECT") {
+      // Allow normal scrolling
     }
   },
   { passive: true },
@@ -679,6 +691,7 @@ const observer = new IntersectionObserver(
       if (entry.isIntersecting) {
         entry.target.classList.add("in-view");
 
+        // Animate countdown boxes when in view
         if (entry.target.classList.contains("countdown-grid")) {
           const boxes = entry.target.querySelectorAll(".countdown-box");
           boxes.forEach((box, index) => {
@@ -703,6 +716,7 @@ document
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 
+  // Preload images
   const images = document.querySelectorAll("img");
   images.forEach((img) => {
     if (img.dataset.src) {
@@ -714,11 +728,13 @@ window.addEventListener("load", () => {
 // ============ ERROR HANDLING ============
 window.addEventListener("error", function (e) {
   console.log("Error:", e.message);
+  // Silent fail for better UX
 });
 
 // ============ ADDITIONAL CLEANUP FOR PAGE REFRESH ============
 window.addEventListener("pageshow", function (event) {
   if (event.persisted) {
+    // Page was restored from bfcache
     const cover = document.getElementById("cover");
     const main = document.getElementById("mainContent");
 
@@ -729,6 +745,7 @@ window.addEventListener("pageshow", function (event) {
       main.style.display = "none";
     }
 
+    // Reset music
     if (audioEl) {
       audioEl.pause();
       setPlayingState(false);
