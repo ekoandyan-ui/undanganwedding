@@ -782,7 +782,6 @@ body.dark-theme .cover-card {
 .cover-latin-names {
   font-family: "Carattere", cursive;
   font-size: 3rem;
-  /* Diperbesar karena font script terlihat lebih kecil */
   font-weight: 400;
   font-style: normal;
   color: var(--text-soft);
@@ -794,11 +793,8 @@ body.dark-theme .cover-card {
 
 .cover-latin-names .ampersand {
   font-size: 0.6em;
-  /* Make the ampersand smaller relative to the names */
   vertical-align: middle;
-  /* Adjust alignment so it stays balanced */
   margin: 0 4px;
-  /* Add slight spacing around the smaler ampersand */
 }
 
 .gold-divider {
@@ -1686,9 +1682,7 @@ body.dark-theme .couple-section {
   display: flex;
   justify-content: center;
   gap: 10px;
-  /* Reduced gap to fit more elements */
   flex-wrap: nowrap;
-  /* Prevent wrapping so they stay in one row */
   margin-bottom: 30px;
 }
 
@@ -1699,9 +1693,7 @@ body.dark-theme .couple-section {
 
 .countdown-box {
   width: 75px;
-  /* Reduced width */
   height: 75px;
-  /* Reduced height */
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(201, 168, 76, 0.35);
   border-radius: var(--radius);
@@ -1772,7 +1764,6 @@ body.dark-theme .couple-section {
 .countdown-number {
   font-family: "Cormorant Garamond", serif;
   font-size: 2.2rem;
-  /* Reduced font size from 3rem */
   font-weight: 700;
   color: var(--gold-light);
   line-height: 1;
@@ -1787,14 +1778,11 @@ body.dark-theme .couple-section {
 .countdown-label {
   font-family: "Cinzel", serif;
   font-size: 0.55rem;
-  /* Reduced font size */
   letter-spacing: 2px;
-  /* Reduced letter spacing */
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
   display: block;
   margin-top: 5px;
-  /* Added margin to separate from numbber */
   animation: fadeIn 1s ease;
 }
 
